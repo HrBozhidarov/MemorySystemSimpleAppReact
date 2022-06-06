@@ -1,13 +1,14 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 
-/* function onRegister(data) {
+import './create-user.component.css';
+
+function onRegister(data) {
     console.log(data);
-} */
+}
 
 function CreateUser() {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const onRegister = data => console.log(data);
 
     return (
         <>
@@ -22,54 +23,48 @@ function CreateUser() {
                                     <input
                                         name="email"
                                         type="text"
-                                        className={`form-control`}
+                                        className={`form-control ${errors.email?.type === 'required' &&  'is-invalid'}`}
                                         id="inputEmail"
                                         placeholder="Email"
                                         defaultValue=""
-                                        {...register("email", { required: true, minLength: 20 })}></input>
-                                        <span>{errors.email?.type === 'required' && <span>This field is required</span>}</span>
-                                        <span>{errors.email?.type === 'minLength' && <span>This FFF</span>}</span>
-                                    {/*                      [ngclassName]="{'is-invalid': submitted && f.email.errors }">
-                                    <div *ngIf="submitted && f.email.errors" 
-                             className="invalid-feedback">
-                                    <div *ngIf="f.email.errors.required">Email is required</div> */}
+                                        {...register("email", { required: true })}></input>
+                                    {errors.email?.type === 'required' && <div className="invalid-feedback"><div>Email is required</div></div>}
                                 </div>
-                                {/*   </div> */}
-                                {/*                     <div className="form-group">
-                        <label for="inputUsername">Username</label>
-                        <input formControlName="username"
-                            type="text"
-                            className="form-control"
-                            id="inputUsername"
-                            placeholder="Username"
-                                [ngclassName]="{'is-invalid': submitted && f.username.errors }">
-                        <div *ngIf="submitted && f.username.errors" 
-                             className="invalid-feedback">
-                        <div *ngIf="f.username.errors.required">Username is required</div>
-                </div>
-            </div>
-            <div className="form-group">
-                <label for="inputProfileUrl">Profile Picture</label>
-                <input formControlName="profileUrl"
-                    type="text"
-                    className="form-control"
-                    id="inputProfileUrl"
-                    placeholder="Profile Picture">
-            </div>
-            <div className="form-group">
-                <label for="inputPassword">Password</label>
-                <input formControlName="password"
-                    type="password"
-                    className="form-control"
-                    id="inputPassword"
-                    placeholder="Password"
-                                   [ngclassName]="{'is-invalid': submitted && f.password.errors }">
-                <div *ngIf="submitted && f.password.errors" 
-                                 className="invalid-feedback">
-                <div *ngIf="f.password.errors.required">Password is required</div>
-            <div *ngIf="f.password.errors.minlength">Password must be at least 3 characters</div>
-                            </div >
-                        </div > */}
+                                <div className="form-group">
+                                        <label htmlFor="inputuserName">User name</label>
+                                        <input
+                                            name="userName"
+                                            type="text"
+                                            className={`form-control ${errors.userName?.type === 'required' &&  'is-invalid'}`}
+                                            id="inputuserName"
+                                            placeholder="User Name"
+                                            defaultValue=""
+                                            {...register("userName", { required: true })}></input>
+                                        {errors.userName?.type === 'required' && <div className="invalid-feedback"><div>User name is required</div></div>}
+                                </div>
+                                <div className="form-group">
+                                        <label htmlFor="inputProfileUrl">Picture</label>
+                                        <input
+                                            name="profileUrl"
+                                            type="text"
+                                            className="form-control" 
+                                            id="inputProfileUrl"
+                                            placeholder="Profile Picture"
+                                            defaultValue=""
+                                            {...register("profileUrl")}></input>
+                                </div>
+                                <div className="form-group">
+                                        <label htmlFor="inputPassword">Password</label>
+                                        <input
+                                            name="password"
+                                            type="text"
+                                            className={`form-control ${errors.password?.type === 'required' &&  'is-invalid'}`}
+                                            id="inputPassword"
+                                            placeholder="Password"
+                                            defaultValue=""
+                                            {...register("password", { required: true })}></input>
+                                        {errors.password?.type === 'required' && <div className="invalid-feedback"><div>Password is required</div></div>}
+                                </div>
                                 <div className="text-center">
                                     <button className="btn">Register</button>
                                 </div>
