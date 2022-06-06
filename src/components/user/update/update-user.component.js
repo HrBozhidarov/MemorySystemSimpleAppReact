@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 
-import './create-user.component.css';
+import './update-user.component.css';
 
 function onUpdate(data) {
     console.log(data);
