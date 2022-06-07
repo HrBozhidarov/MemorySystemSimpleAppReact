@@ -16,7 +16,7 @@ function LoginUser() {
                 <div className="col-md-6 mb-4 mx-auto">
                     <div className="card">
                         <div className="card-body">
-                            <h3 className="text-center default-text py-3"><i className="fa fa-registered"></i> Login:</h3>
+                            <h3 className="text-center default-text py-3"><i className="fa fa-lock"></i> Login:</h3>
                             <form onSubmit={handleSubmit(onLogin)}>
                                 <div className="form-group">
                                         <label htmlFor="inputuserName">User name</label>

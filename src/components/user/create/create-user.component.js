@@ -1,23 +1,24 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 
+import userService from '../../../services/account.service';
+
 import './create-user.component.css';
 
-function onRegister(data) {
-    console.log(data);
+function onCreate(data) {
+    
 }
 
 function CreateUser() {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     return (
-        <>
             <div className="row mt-5 mb-5">
                 <div className="col-md-6 mb-4 mx-auto">
                     <div className="card">
                         <div className="card-body">
                             <h3 className="text-center default-text py-3"><i className="fa fa-registered"></i> Register:</h3>
-                            <form onSubmit={handleSubmit(onRegister)}>
+                            <form onSubmit={handleSubmit(onCreate)}>
                                 <div className="form-group">
                                     <label htmlFor="inputEmail">Email</label>
                                     <input
@@ -73,7 +74,6 @@ function CreateUser() {
                     </div>
                 </div>
             </div>
-        </>
     )
 }
 
