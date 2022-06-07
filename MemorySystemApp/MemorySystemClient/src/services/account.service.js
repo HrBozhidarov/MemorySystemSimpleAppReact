@@ -6,9 +6,9 @@ const LOGIN_URL = `${DOMAIN_URL}account/login`;
 class AccountService {
     login(payload) {
         return axios.post(LOGIN_URL, payload).then(result => {
-            localStorage.setItem(ACCOUNT_KEYS.TOKEN, result.data.token);
-            localStorage.setItem(ACCOUNT_KEYS.USER_PROFILE_PICTURE, result.data.profileUrl);
-            localStorage.setItem(ACCOUNT_KEYS.ROLE, result.data.role);
+            localStorage.setItem(ACCOUNT_KEYS.TOKEN, result.data.data.token);
+            localStorage.setItem(ACCOUNT_KEYS.USER_PROFILE_PICTURE, result.data.data.profileUrl);
+            localStorage.setItem(ACCOUNT_KEYS.ROLE, result.data.data.role);
         });
     }
 

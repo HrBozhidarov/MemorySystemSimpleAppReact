@@ -2,31 +2,29 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from "react-router-dom";
 
-import { accountService } from '../../../services/account.service';
+import accountService from '../../../services/account.service';
 
 import { toast } from 'react-toastify';
 
 import './login-user.component.css';
 
-function onLogin(data) {
-    accountService
-        .login(data)
-        .then(response => {
-            debugger;
-            toast.success('Loggin successfully');
-
-            const navigate = useNavigate();
-            navigate('/', {replace: true});
-        })
-        .catch(err => {
-            debugger;
-            toast.error(err.message);
-        });
-}
-
 function LoginUser() {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { spinner, setSpinner } = useState(false);
+    const navigate = useNavigate();
+
+    const onLogin = (data) => {
+        accountService
+            .login(data)
+            .then(() => {
+                toast.success('Loggin successfully');
+
+                navigate('/', { replace: true });
+            })
+            .catch(err => {
+                toast.error(err.message);
+            });
+    }
 
     return (
         <>
