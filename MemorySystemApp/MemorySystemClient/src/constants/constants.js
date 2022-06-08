@@ -6,3 +6,5 @@ export const ACCOUNT_KEYS = {
     TOKEN: 'token',
     USER_PROFILE_PICTURE: 'user-profile-picture',
 }
+
+export const ROLE_ADMIN = 'Admin';

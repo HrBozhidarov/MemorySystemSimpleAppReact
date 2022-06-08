@@ -1,11 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import accountService from '../../services/account.service';
+
 import logo from '../../assets/images/logo-site.png';
 
 import './navigation-bar.component.css';
 
 function NavigationBar() {
+    const isAuth = accountService.isLoggedIn();
+
     return (
         <nav className="navbar navbar-expand-lg">
             <Link className="navbar-brand" to="/">
@@ -27,14 +31,14 @@ function NavigationBar() {
                         <Link className="nav-link nav-home" to="/home"><i className="fa fa-home"></i> Home</Link>
                     </li>
                 </ul>
-                <ul className="navbar-nav" >
+                {isAuth && <ul className="navbar-nav" >
                     <li className="nav-item active">
                         <Link className="nav-link" to="/user/create">Register</Link>
                     </li>
                     <li className="nav-item active">
                         <Link className="nav-link" to="/user/loging">Login</Link>
                     </li>
-                </ul>
+                </ul>} 
             </div>
         </nav>
     )

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { DOMAIN_URL, ACCOUNT_KEYS } from '../constants/constants'
+import { DOMAIN_URL, ACCOUNT_KEYS, ROLE_ADMIN } from '../constants/constants'
 
 const LOGIN_URL = `${DOMAIN_URL}account/login`;
 
@@ -24,6 +24,10 @@ class AccountService {
 
     isLoggedIn() {
         return this.getToken() != null;
+    }
+
+    isAdmin() {
+        return localStorage.getItem(ACCOUNT_KEYS.ROLE) === ROLE_ADMIN;
     }
 }
 
