@@ -31,7 +31,7 @@ div ul li:hover a, i {
 }
 
 div.dropdown-menu.dropdown-menu-right a {
-    color: #8aa6f8fc;
+    color: #8aa6f8fc !important;
 }
 
 div.dropdown-menu.dropdown-menu-right a:hover {

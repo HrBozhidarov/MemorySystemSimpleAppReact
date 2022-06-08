@@ -8,7 +8,6 @@ import Header from './components/header/header.component';
 import AuthProvider from './shared/auth-provider';
 
 import './app.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {

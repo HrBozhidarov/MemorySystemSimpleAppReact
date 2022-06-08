@@ -4,14 +4,14 @@ import { useNavigate } from "react-router-dom";
 import AuthContext from './auth-context';
 
 import accountService from '../services/account.service';
-import userService from '../services/user.service';
 
 import { toast } from 'react-toastify';
 
 const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
-    const { isAuth, setIsAuth } = useState(false);
-    const { isAdmin, setIsAdmin } = useState(false);
+    const [ isAuth, setIsAuth ] = useState(accountService.isLoggedIn());
+    const [ isAdmin, setIsAdmin ] = useState(accountService.isAdmin());
+    const [ profileUrl, setProfileUrl ] = useState(accountService.getUserProfilePictureUrl());
 
     const onLogin = (data) => {
         accountService
@@ -19,6 +19,7 @@ const AuthProvider = ({ children }) => {
             .then(() => {
                 setIsAuth(accountService.isLoggedIn());
                 setIsAdmin(accountService.isAdmin());
+                setProfileUrl(accountService.getUserProfilePictureUrl());
                 
                 toast.success('Loggin successfully');
 
@@ -29,32 +30,29 @@ const AuthProvider = ({ children }) => {
             });
     }
 
-    const onCreate = (data) => {
-        userService
-            .create(data)
-            .then(() => {
-                toast.success('Update yours data successfully');
+    const onLogout = () => {
+        accountService.logout();
 
-                navigate('/', { replace: true });
-            })
-            .catch(err => {
-                toast.error(err.message);
-            });
+        setIsAuth(accountService.isLoggedIn());
+        setProfileUrl(null);
+
+        navigate('/', { replace: true });
     }
 
     const value = {
         onLogin: onLogin,
-        onCreate: onCreate,
+        onLogout: onLogout,
         user: {
             isAuth: isAuth,
             isAdmin: isAdmin,
+            profileUrl: profileUrl,
         },
     };
 
     return (
-        <AuthContext.Provide value={value}>
+        <AuthContext.Provider value={value}>
             {children}
-        </AuthContext.Provide>
+        </AuthContext.Provider>
     )
 }
 

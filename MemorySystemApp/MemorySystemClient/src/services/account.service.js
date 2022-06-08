@@ -19,7 +19,7 @@ class AccountService {
     }
 
     getToken() {
-        return localStorage.getItem(this.tokenKey);
+        return localStorage.getItem(ACCOUNT_KEYS.TOKEN);
     }
 
     isLoggedIn() {
@@ -28,6 +28,10 @@ class AccountService {
 
     isAdmin() {
         return localStorage.getItem(ACCOUNT_KEYS.ROLE) === ROLE_ADMIN;
+    }
+
+    getUserProfilePictureUrl() {
+        return localStorage.getItem(ACCOUNT_KEYS.USER_PROFILE_PICTURE)
     }
 }
 

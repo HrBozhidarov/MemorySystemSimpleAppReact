@@ -1,12 +1,12 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 
 import Home from './components/home/home.component';
 import UserCreate from './components/user/create/create-user.component';
 import UpdateUser from './components/user/update/update-user.component';
 import LoginUser from './components/user/login/login-user.component';
 
-import accountService from './services/account.service';
+import { useAuth } from './shared/auth-context';
 
 function Routing() {
     return (
@@ -23,9 +23,11 @@ function Routing() {
 }
 
 function DisableAccessWhenAuth({children}) {
-    debugger;
-    if (accountService.isLoggedIn()) {
-        return <Navigate to="/" replace />;
+    const userAthContext = useAuth();
+    const navigate = useNavigate();
+
+    if (userAthContext.user.isAuth) {
+        return navigate('/', { replace: true });
     }
 
     return children;
@@ -33,14 +35,16 @@ function DisableAccessWhenAuth({children}) {
 
 function RequireAuth({ onlyAdminAccess, children }) {
     const location = useLocation();
+    const userAthContext = useAuth();
+    const navigate = useNavigate();
 
-    if (!accountService.isLoggedIn()) {
-        return <Navigate to="/user/login" state={{ from: location }} replace />;
+    if (!userAthContext.user.isAuth) {
+        return navigate('/user/login', { replace: true, state: { from: location?.pathname || '/' } });
     }
 
     if (onlyAdminAccess) {
-        if (!accountService.isAdmin()) {
-            return <Navigate to="/" replace />;
+        if (!userAthContext.user.isAdmin) {
+            return navigate('/', { replace: true });
         }
     }
 

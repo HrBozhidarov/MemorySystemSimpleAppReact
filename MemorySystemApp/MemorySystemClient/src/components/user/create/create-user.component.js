@@ -1,11 +1,30 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+
+import userService from '../../../services/user.service';
+
+import { toast } from 'react-toastify';
 
 import './create-user.component.css';
 
-function CreateUser({onCreate}) {
+function CreateUser() {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const navigate = useNavigate();
     
+    const onCreate = (data) => {
+        userService
+            .create(data)
+            .then(() => {
+                toast.success('Update yours data successfully');
+
+                navigate('/', { replace: true });
+            })
+            .catch(err => {
+                toast.error(err.message);
+            });
+    }
+
     return (
         <div className="row mt-5 mb-5">
             <div className="col-md-6 mb-4 mx-auto">

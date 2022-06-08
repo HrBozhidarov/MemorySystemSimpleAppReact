@@ -1,10 +1,13 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
+import { useAuth } from '../../../shared/auth-context';
+
 import './login-user.component.css';
 
-function LoginUser({onLogin}) {
+function LoginUser() {
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const userAthContext = useAuth();
 
     return (
         <>
@@ -13,7 +16,7 @@ function LoginUser({onLogin}) {
                     <div className="card">
                         <div className="card-body">
                             <h3 className="text-center default-text py-3"><i className="fa fa-lock"></i> Login:</h3>
-                            <form onSubmit={handleSubmit(onLogin)}>
+                            <form onSubmit={handleSubmit(userAthContext.onLogin)}>
                                 <div className="form-group">
                                     <label htmlFor="inputuserName">User name</label>
                                     <input

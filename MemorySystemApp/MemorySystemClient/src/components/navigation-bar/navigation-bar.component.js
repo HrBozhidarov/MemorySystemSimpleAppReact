@@ -1,14 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import accountService from '../../services/account.service';
-
+import { useAuth } from '../../shared/auth-context';
 import logo from '../../assets/images/logo-site.png';
 
 import './navigation-bar.component.css';
 
 function NavigationBar() {
-    const isAuth = accountService.isLoggedIn();
+    const userAthContext = useAuth();
 
     return (
         <nav className="navbar navbar-expand-lg">
@@ -31,14 +30,35 @@ function NavigationBar() {
                         <Link className="nav-link nav-home" to="/home"><i className="fa fa-home"></i> Home</Link>
                     </li>
                 </ul>
-                {isAuth && <ul className="navbar-nav" >
-                    <li className="nav-item active">
-                        <Link className="nav-link" to="/user/create">Register</Link>
-                    </li>
-                    <li className="nav-item active">
-                        <Link className="nav-link" to="/user/loging">Login</Link>
-                    </li>
-                </ul>} 
+                {!userAthContext.user.isAuth &&
+                    <ul className="navbar-nav" >
+                        <li className="nav-item active">
+                            <Link className="nav-link" to="/user/create">Register</Link>
+                        </li>
+                        <li className="nav-item active">
+                            <Link className="nav-link" to="/user/loging">Login</Link>
+                        </li>
+                    </ul>}
+
+                {userAthContext.user.isAuth &&
+                    <ul className="navbar-nav">
+                        <li className="nav-item dropdown">
+                            <Link
+                                className="nav-link"
+                                to="#"
+                                id="navbarDropdown"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false">
+                                <img src={userAthContext.user.profileUrl} width="50" height="50" className="rounded-circle" />
+                            </Link>
+                            <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <Link className="dropdown-item" to="#">Dashboard</Link>
+                                <Link className="dropdown-item" to="#">Edit Profile</Link>
+                                <Link className="dropdown-item" to='#' onClick={userAthContext.onLogout}>Logout</Link>
+                            </div>
+                        </li>
+                    </ul>}
             </div>
         </nav>
     )
