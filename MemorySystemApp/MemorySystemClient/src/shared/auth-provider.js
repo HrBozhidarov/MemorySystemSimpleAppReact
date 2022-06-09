@@ -26,7 +26,7 @@ const AuthProvider = ({ children }) => {
                 navigate('/', { replace: true });
             })
             .catch(err => {
-                toast.error(err.message);
+                toast.error(err.response?.data?.errorMessage || err.message);
             });
     }
 

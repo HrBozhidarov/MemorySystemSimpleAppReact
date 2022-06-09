@@ -54,10 +54,6 @@
 
             try
             {
-                var token = await this.userManager.GeneratePasswordResetTokenAsync(user);
-
-                var result = await this.userManager.ResetPasswordAsync(user, token, model.Password);
-
                 user.Email = model.Email;
                 user.UserName = model.Username;
                 user.ProfileUrl = model.ProfileUrl;
@@ -66,11 +62,11 @@
 
                 scope.Complete();
             }
-            catch
+            catch (Exception ex)
             {
                 scope.Dispose();
 
-                return Result.Error("Something wrong!");
+                return Result.Error(ex.ToString());
             }
 
             return Result.Success;
