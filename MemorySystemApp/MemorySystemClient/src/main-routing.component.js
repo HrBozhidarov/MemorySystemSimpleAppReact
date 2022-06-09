@@ -2,10 +2,10 @@ import React from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 
 import Home from './components/home/home.component';
-import UserCreate from './components/user/create/create-user.component';
-import UpdateUser from './components/user/update/update-user.component';
-import LoginUser from './components/user/login/login-user.component';
-import CreateMemory from './components/memory/create/create-memory.component';
+import UserCreate from './components/user/create-user.component';
+import UpdateUser from './components/user/update-user.component';
+import LoginUser from './components/user/login-user.component';
+import CreateMemory from './components/memory/create-memory.component';
 
 import { useAuth } from './shared/auth-context';
 

@@ -2,13 +2,13 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
-import memoryService from '../../../services/memory.service';
+import memoryService from '../../services/memory.service';
 
 import { toast } from 'react-toastify';
 
 import './create-memory.component.css';
 
-import { CATEGORY_KEYS } from '../../../constants/constants';
+import { CATEGORY_KEYS } from '../../constants/constants';
 
 function buildCategoryOptions() {
     const categoryKeys = Object.keys(CATEGORY_KEYS).filter(c => c !== 'All');

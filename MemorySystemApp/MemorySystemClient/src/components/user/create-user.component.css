@@ -1,0 +1,26 @@
+.card {
+    border: 1px solid #8aa6f8fc !important;
+    border-radius: 25px !important;
+}
+
+.btn {
+    background-color: #8aa6f8fc;
+    color: #fff;
+}
+
+.btn:hover {
+    background-color: #406be9fc;
+}
+
+label {
+    color: #8aa6f8fc;
+}
+
+h3 {
+    color: #8aa6f8fc !important;
+}
+
+input {
+    border-radius: 10px !important;
+    border: 1px solid #8aa6f8fc !important;
+}
