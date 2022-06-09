@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
 
-import authHeader from './auth-header.service'
+import authHeader from '../shared/axios-utils'
 
 import { DOMAIN_URL } from '../constants/constants';
 

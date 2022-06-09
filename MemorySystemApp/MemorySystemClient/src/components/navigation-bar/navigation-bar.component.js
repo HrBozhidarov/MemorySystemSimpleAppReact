@@ -32,10 +32,10 @@ function NavigationBar() {
                     {userAthContext.user.isAuth &&
                         <>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/memory-create"><i className="fa fa-picture-o"></i> Create You Memory</Link>
+                                <Link className="nav-link" to="/memory/create"><i className="fa fa-picture-o"></i> Create You Memory</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/my-memories"><i className="fa fa-camera"></i> My Memories</Link>
+                                <Link className="nav-link" to="/my/memories"><i className="fa fa-camera"></i> My Memories</Link>
                             </li>
                         </>}
                 </ul>
@@ -45,7 +45,7 @@ function NavigationBar() {
                             <Link className="nav-link" to="/user/create">Register</Link>
                         </li>
                         <li className="nav-item active">
-                            <Link className="nav-link" to="/user/loging">Login</Link>
+                            <Link className="nav-link" to="/user/login">Login</Link>
                         </li>
                     </ul>}
 

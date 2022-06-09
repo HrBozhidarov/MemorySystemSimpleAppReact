@@ -8,3 +8,13 @@ export const ACCOUNT_KEYS = {
 }
 
 export const ROLE_ADMIN = 'Admin';
+
+export const CATEGORY_KEYS = {
+    All: 0,
+    Love: 1,
+    Education: 2,
+    Travel: 3,
+    Sport: 4,
+    Nature: 5,
+    Animal: 6,
+};
