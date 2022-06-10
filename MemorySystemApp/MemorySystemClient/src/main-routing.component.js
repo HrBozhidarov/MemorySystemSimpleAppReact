@@ -6,6 +6,7 @@ import UserCreate from './components/user/create-user.component';
 import UpdateUser from './components/user/update-user.component';
 import LoginUser from './components/user/login-user.component';
 import CreateMemory from './components/memory/create-memory.component';
+import UserMemories from './components/memory/user-memories.component';
 
 import { useAuth } from './shared/auth-context';
 
@@ -19,6 +20,7 @@ function Routing() {
                 <Route path='/user/update' element={<RequireAuth><UpdateUser/></RequireAuth>}></Route>
                 <Route path='/user/login' element={<DisableAccessWhenAuth><LoginUser/></DisableAccessWhenAuth>}></Route>
                 <Route path='/memory/create' element={<RequireAuth><CreateMemory/></RequireAuth>}></Route>
+                <Route path='/my/memories' element={<RequireAuth><UserMemories/></RequireAuth>}></Route>
             </Routes>
         </>
     )
