@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
 import AuthContext from './auth-context';
@@ -13,6 +13,9 @@ const AuthProvider = ({ children }) => {
     const [ isAdmin, setIsAdmin ] = useState(accountService.isAdmin());
     const [ profileUrl, setProfileUrl ] = useState(accountService.getUserProfilePictureUrl());
 
+    // Fix warning
+    useEffect(() => {}, []);
+    
     const onLogin = (data) => {
         accountService
             .login(data)

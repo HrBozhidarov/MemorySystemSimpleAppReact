@@ -6,7 +6,7 @@ import './side-bar-memory-category.component.css';
 function SideBarMemoryCategory({ id, currentId, setCategory, name, iclass, classAlignContainer, classContainerHeader }) {
     return (
         <div className={`wrimagecard wrimagecard-topimage c-mt-30 ${id === currentId && 'click-box'}`}>
-            <Link to="#" onClick={setCategory}>
+            <Link to="#" onClick={() => setCategory(id)}>
                 <div className={`wrimagecard-topimage_header ${classContainerHeader}`}>
                     <div className={classAlignContainer}><i className={iclass}></i></div>
                 </div>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import SideBarMemoryCategory from './side-bar-memory-category.component';
 
 import './side-bar-memory-categories.component.css';
@@ -55,19 +55,13 @@ const CATEGORIES = [
     },
 ]
 
-function handleCategoryChange(e) {
-    console.log(e);
-}
-
-function SideBarMemoryCategories() {
-    const [category, setCategory] = useState('all');
-
+function SideBarMemoryCategories({ categoryId, handleCategoryChange}) {
     const sideBarCategories = CATEGORIES
         .map(v =>
             <SideBarMemoryCategory
                 key={v.id}
                 id={v.id}
-                currentId={category}
+                currentId={categoryId}
                 setCategory={handleCategoryChange}
                 name={v.name}
                 iclass={v.iclass}
