@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import './side-bar-memory-category.component.css';
-
 function SideBarMemoryCategory({ id, currentId, setCategory, name, iclass, classAlignContainer, classContainerHeader }) {
     return (
         <div className={`wrimagecard wrimagecard-topimage c-mt-30 ${id === currentId && 'click-box'}`}>

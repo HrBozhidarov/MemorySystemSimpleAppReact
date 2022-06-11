@@ -1,5 +1,9 @@
 ﻿namespace MemorySystem.Controllers.Models.Output
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
     using MemorySystem.Infrastructure.AutomapperSettings;
     using MemorySystem.Services.Models;
 

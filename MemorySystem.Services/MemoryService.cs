@@ -105,9 +105,9 @@
             return Result<IEnumerable<PictureModel>>.SuccessWith(pictures);
         }*/
 
-        public async Task<Result<IEnumerable<MemoryModel>>> UserMemories(string userId, string category)
+        public async Task<Result<MemoryPageModel>> UserMemories(string userId, string category, int pageNumber, int pageSize)
         {
-            Enum.TryParse(category, out CategoryType categoryType);
+            Enum.TryParse(category, ignoreCase: true, out CategoryType categoryType);
             Expression<Func<Memory, bool>> expr = p => p.Category.Type == categoryType && p.Owner.Id == userId;
 
             if (categoryType == CategoryType.All)
@@ -115,9 +115,20 @@
                 expr = p => p.OwnerId == userId;
             }
 
-            var memories = await this.db.Memories.Where(expr).ProjectTo<MemoryModel>().ToListAsync();
+            var memories = await this.db.Memories
+                .Where(expr)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ProjectTo<MemoryModel>()
+                .ToListAsync();
 
-            return Result<IEnumerable<MemoryModel>>.Success(memories);
+            var result = new MemoryPageModel
+            {
+                Memories = memories,
+                TotalCount = await this.db.Memories.Where(expr).CountAsync(),
+            };
+
+            return Result<MemoryPageModel>.Success(result);
 
             /*Func<Picture, bool> func = p => p.Category.Type == categoryType;
 

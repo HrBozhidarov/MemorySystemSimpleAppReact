@@ -6,8 +6,6 @@ import { toast } from 'react-toastify';
 
 import userService from '../../services/user.service';
 
-import './update-user.component.css';
-
 function UpdateUser() {
     const { register, handleSubmit, formState: { errors }, setValue } = useForm();
     const navigate = useNavigate();

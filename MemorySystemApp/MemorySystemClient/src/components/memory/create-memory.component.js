@@ -6,8 +6,6 @@ import memoryService from '../../services/memory.service';
 
 import { toast } from 'react-toastify';
 
-import './create-memory.component.css';
-
 import { CATEGORY_KEYS } from '../../constants/constants';
 
 function buildCategoryOptions() {

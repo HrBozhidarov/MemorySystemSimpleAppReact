@@ -3,8 +3,6 @@ import { useForm } from 'react-hook-form';
 
 import { useAuth } from '../../shared/auth-context';
 
-import './login-user.component.css';
-
 function LoginUser() {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const userAthContext = useAuth();

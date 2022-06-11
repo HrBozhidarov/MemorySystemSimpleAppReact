@@ -46,8 +46,8 @@
 
         [HttpGet]
         [Route(nameof(UserMemories))]
-        public async Task<IActionResult> UserMemories(string category)
-            => this.ResponseResult<IEnumerable<MemoryModel>, IEnumerable<MemoryResponseModel>>(
-                await this.memoryService.UserMemories(this.User.GetUserId(), category));
+        public async Task<IActionResult> UserMemories(string category, int pageNumber, int pageSize)
+            => this.ResponseResult<MemoryPageModel, MemoryPageResponseModel>(
+                await this.memoryService.UserMemories(this.User.GetUserId(), category, pageNumber, pageSize));
     }
 }

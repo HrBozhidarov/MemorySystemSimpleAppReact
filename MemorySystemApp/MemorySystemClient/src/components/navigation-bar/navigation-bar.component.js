@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../../shared/auth-context';
 import logo from '../../assets/images/logo-site.png';
 
-import './navigation-bar.component.css';
-
 function NavigationBar() {
     const userAthContext = useAuth();
 

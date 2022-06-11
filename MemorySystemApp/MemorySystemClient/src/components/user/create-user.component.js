@@ -6,8 +6,6 @@ import userService from '../../services/user.service';
 
 import { toast } from 'react-toastify';
 
-import './create-user.component.css';
-
 function CreateUser() {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();

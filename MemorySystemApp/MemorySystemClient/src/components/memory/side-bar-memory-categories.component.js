@@ -1,8 +1,6 @@
 import React from 'react';
 import SideBarMemoryCategory from './side-bar-memory-category.component';
 
-import './side-bar-memory-categories.component.css';
-
 const CATEGORIES = [
     {
         id: 'all',
