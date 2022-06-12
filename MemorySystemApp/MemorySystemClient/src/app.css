@@ -3,6 +3,10 @@ body {
     height: 100%;
 }
 
+.test {
+    color: red !important;
+}
+
 /* Decorate pagination element */
 .text-decoration-none {
     text-decoration: none !important;
@@ -295,9 +299,6 @@ div.dropdown-menu.dropdown-menu-right a:hover {
 }
 
 .section {
-    float: left;
-    width: 100%;
-    background: #fff;
     padding: 30px 0;
 }
 

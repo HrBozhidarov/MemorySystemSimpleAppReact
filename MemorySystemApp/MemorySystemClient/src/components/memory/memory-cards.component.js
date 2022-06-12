@@ -10,6 +10,7 @@ const PAGE_SIZE = 8;
 function MemoryCards({ category, itemsPerPage }) {
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
+    const [remountComponent, setRemountComponent] = useState(0);
 
     const getMemories = (pageNumber) => {
         memoryService.userMemories(category, pageNumber, PAGE_SIZE)
@@ -22,9 +23,10 @@ function MemoryCards({ category, itemsPerPage }) {
                 console.log(e);
             });
     }
-
+    
     useEffect(() => {
         getMemories(1);
+        setRemountComponent(remountComponent + 1);
     }, [category]);
 
     const handlePageClick = (event) => {
@@ -33,7 +35,7 @@ function MemoryCards({ category, itemsPerPage }) {
     };
 
     return (
-        <div className="section">
+        <div key={remountComponent} className="section">
             <div className="container">
                 <div className="row">
                     {currentItems.map(i =>
@@ -59,6 +61,7 @@ function MemoryCards({ category, itemsPerPage }) {
                         pageClassName="list-style-type-none"
                         previousClassName="list-style-type-none"
                         nextClassName="list-style-type-none"
+                        activeLinkClassName="test"
                         renderOnZeroPageCount={null} />
                 </div>
             </div>
