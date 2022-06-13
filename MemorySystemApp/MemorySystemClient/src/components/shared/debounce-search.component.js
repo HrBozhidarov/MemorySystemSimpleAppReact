@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
 import debounce from 'lodash.debounce';
 
-function DebaunceSearch({searchHandler}) {
+function DebounceSearch({searchHandler}) {
     const debouncedChangeHandler = useMemo(() => debounce(searchHandler, 300), []);
 
         useEffect(() => {
@@ -20,4 +20,4 @@ function DebaunceSearch({searchHandler}) {
     )
 }
 
-export default DebaunceSearch;
+export default DebounceSearch;

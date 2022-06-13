@@ -3,6 +3,38 @@ body {
     height: 100%;
 }
 
+.flex-right-auto {
+    margin-left: auto;
+ }
+
+ .padding-bottom-zero {
+    padding-bottom: 0px !important;
+ }
+
+ .margin-bottom-zero {
+    margin-bottom: 0px !important;
+ }
+
+ .padding-top-zero {
+    padding-top: 0px !important;
+ }
+
+ .padding-top-10px {
+    padding-top: 10px !important;
+ }
+
+.padding-top-20px {
+    padding-top: 20px !important;
+}
+
+.margin-right-15px {
+    margin-right: 15px !important;
+ }
+
+ .margin-left-zero {
+    margin-left: 0px !important;
+ }
+
 .test {
     color: red !important;
 }
@@ -315,23 +347,12 @@ div.dropdown-menu.dropdown-menu-right a:hover {
     pointer-events: none !important;
 }
 
-.section {
-    padding: 30px 0;
-}
-
 .col-md-3 {
     padding: 15px;
 }
 
 /* Memory Cards */
-/* .card-img-block {
-    min-height: 45%;
-}
 
-img.img-fluid {
-    min-height: 100%;
-}
- */
 div.card.profile-card-2.wrimagecard.wrimagecard-topimage.h-100 {
     border-style: none !important;
 }
@@ -351,9 +372,26 @@ div.card.profile-card-2.wrimagecard.wrimagecard-topimage.h-100 {
     transform: translate(-50%, 0%);
 }
 
+.font-weight-700 {
+    font-weight: 700 !important;
+}
+
+.profile-card-2 h5 span {
+    font-weight: 400 !important;
+}
+
 .profile-card-2 h5 {
     font-weight: 600;
     color: #007bff;
+}
+
+.profile-card-title {
+    color: #3ca2bc !important;
+}
+
+.profile-card-title span {
+    font-weight: 400 !important;
+    color: #3ca2bc !important;
 }
 
 .profile-card-2 .card-text {

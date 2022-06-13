@@ -17,6 +17,9 @@
         [Required]
         public string Url { get; set; }
 
+        // Add attribute
+        public string Title { get; set; }
+
         public string Description { get; set; }
 
         [Required]

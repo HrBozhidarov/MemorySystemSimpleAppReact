@@ -10,6 +10,9 @@
         public CategoryType Type { get; set; }
 
         [Required]
+        public string Title { get; set; }
+
+        [Required]
         public string Url { get; set; }
 
         public string Description { get; set; }

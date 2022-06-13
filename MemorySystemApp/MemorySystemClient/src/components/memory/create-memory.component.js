@@ -47,11 +47,23 @@ function CreateMemory() {
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="inputUrl">User name</label>
+                                <label htmlFor="inputTitle">Title</label>
+                                <input
+                                    name="title"
+                                    type="text"
+                                    className={`form-control ${errors.title?.type === 'required' && 'is-invalid'}`}
+                                    id="inputTitle"
+                                    placeholder="Title"
+                                    defaultValue=""
+                                    {...register("title", { required: true })}></input>
+                                {errors.url?.type === 'required' && <div className="invalid-feedback"><div>Title is required</div></div>}
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="inputUrl">Image Url</label>
                                 <input
                                     name="url"
                                     type="text"
-                                    className={`form-control ${errors.userName?.type === 'required' && 'is-invalid'}`}
+                                    className={`form-control ${errors.url?.type === 'required' && 'is-invalid'}`}
                                     id="inputUrl"
                                     placeholder="Url"
                                     defaultValue=""

@@ -35,7 +35,7 @@ function MemoryCards({ category, itemsPerPage }) {
     };
 
     return (
-        <div key={remountComponent} className="section">
+        <div key={remountComponent}>
             <div className="container">
                 <div className="row">
                     {currentItems.map(i =>
@@ -43,6 +43,7 @@ function MemoryCards({ category, itemsPerPage }) {
                             key={i.id}
                             ownerProfilePicture={i.ownerProfilePicture}
                             pictureUrl={i.url}
+                            title={i.title}
                             owner={i.owner}
                             isLikeFromCurrentUser={i.isLikedFromCurrentUser}
                             likes={i.likes} />)}
