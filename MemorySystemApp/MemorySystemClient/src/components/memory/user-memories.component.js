@@ -48,7 +48,7 @@ function UserMemories() {
         <>
             <div className="row">
                 <div className='col-md-4 flex-right-auto padding-bottom-zero margin-right-15px padding-top-20px'>
-                    <DebounceSearch searchHandler={search} />
+                    <DebounceSearch searchHandler={search} category={categoryId} />
                 </div>
             </div>
             <div className="row">
