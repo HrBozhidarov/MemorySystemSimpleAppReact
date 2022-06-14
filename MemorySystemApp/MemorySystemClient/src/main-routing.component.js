@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 
 import Home from './components/home/home.component';
@@ -14,25 +14,27 @@ function Routing() {
     return (
         <>
             <Routes>
-                <Route path='/' element={<Home/>}></Route>
-                <Route path='/home' element={<Home/>}></Route>
-                <Route path='/user/create' element={<DisableAccessWhenAuth><UserCreate/></DisableAccessWhenAuth>}></Route>
-                <Route path='/user/update' element={<RequireAuth><UpdateUser/></RequireAuth>}></Route>
-                <Route path='/user/login' element={<DisableAccessWhenAuth><LoginUser/></DisableAccessWhenAuth>}></Route>
-                <Route path='/memory/create' element={<RequireAuth><CreateMemory/></RequireAuth>}></Route>
-                <Route path='/my/memories' element={<RequireAuth><UserMemories/></RequireAuth>}></Route>
+                <Route path='/' element={<Home />}></Route>
+                <Route path='/home' element={<Home />}></Route>
+                <Route path='/user/create' element={<DisableAccessWhenAuth><UserCreate /></DisableAccessWhenAuth>}></Route>
+                <Route path='/user/update' element={<RequireAuth><UpdateUser /></RequireAuth>}></Route>
+                <Route path='/user/login' element={<DisableAccessWhenAuth><LoginUser /></DisableAccessWhenAuth>}></Route>
+                <Route path='/memory/create' element={<RequireAuth><CreateMemory /></RequireAuth>}></Route>
+                <Route path='/my/memories' element={<RequireAuth><UserMemories /></RequireAuth>}></Route>
             </Routes>
         </>
     )
 }
 
-function DisableAccessWhenAuth({children}) {
+function DisableAccessWhenAuth({ children }) {
     const userAthContext = useAuth();
     const navigate = useNavigate();
 
-    if (userAthContext.user.isAuth) {
-        return navigate('/', { replace: true });
-    }
+    useEffect(() => {
+        if (userAthContext.user.isAuth) {
+            return navigate('/', { replace: true });
+        }
+    })
 
     return children;
 }
@@ -42,15 +44,17 @@ function RequireAuth({ onlyAdminAccess, children }) {
     const userAthContext = useAuth();
     const navigate = useNavigate();
 
-    if (!userAthContext.user.isAuth) {
-        return navigate('/user/login', { replace: true, state: { from: location?.pathname || '/' } });
-    }
-
-    if (onlyAdminAccess) {
-        if (!userAthContext.user.isAdmin) {
-            return navigate('/', { replace: true });
+    useEffect(() => {
+        if (!userAthContext.user.isAuth) {
+            return navigate('/user/login', { replace: true, state: { from: location?.pathname || '/' } });
         }
-    }
+    
+        if (onlyAdminAccess) {
+            if (!userAthContext.user.isAdmin) {
+                return navigate('/', { replace: true });
+            }
+        }
+    })
 
     return children;
 }

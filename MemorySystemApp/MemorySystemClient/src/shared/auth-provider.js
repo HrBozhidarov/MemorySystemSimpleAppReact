@@ -26,7 +26,7 @@ const AuthProvider = ({ children }) => {
                 
                 toast.success('Loggin successfully');
 
-                navigate('/', { replace: true });
+                // navigate('/', { replace: true });
             })
             .catch(err => {
                 toast.error(err.response?.data?.errorMessage || err.message);
