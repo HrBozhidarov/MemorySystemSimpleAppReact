@@ -1,39 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ReactPaginate from 'react-paginate';
 
 import ItemMemoryCard from '../memory/item-memory-card.component';
 
-import memoryService from './../../services/memory.service';
-
-const PAGE_SIZE = 8;
-
-function MemoryCards({ category, itemsPerPage }) {
-    const [currentItems, setCurrentItems] = useState([]);
-    const [pageCount, setPageCount] = useState(0);
-    const [remountComponent, setRemountComponent] = useState(0);
-
-    const getMemories = (pageNumber) => {
-        memoryService.userMemories(category, pageNumber, PAGE_SIZE)
-            .then(response => {
-                const { totalCount, memories } = response.data.data;
-                setPageCount(Math.ceil(totalCount / itemsPerPage));
-                setCurrentItems(memories);
-            })
-            .catch(e => {
-                console.log(e);
-            });
-    }
-    
-    useEffect(() => {
-        getMemories(1);
-        setRemountComponent(remountComponent + 1);
-    }, [category]);
-
-    const handlePageClick = (event) => {
-        let currentPage = event.selected + 1;
-        getMemories(currentPage);
-    };
-
+function MemoryCards({ currentItems, handlePageClick, pageCount, remountComponent }) {
     return (
         <div key={remountComponent}>
             <div className="container">

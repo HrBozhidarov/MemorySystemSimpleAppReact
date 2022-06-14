@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from 'react';
 import debounce from 'lodash.debounce';
 
 function DebounceSearch({searchHandler}) {
-    const debouncedChangeHandler = useMemo(() => debounce(searchHandler, 300), []);
+    const debouncedChangeHandler = useMemo(() => debounce(searchHandler, 500), []);
 
         useEffect(() => {
             return () => {

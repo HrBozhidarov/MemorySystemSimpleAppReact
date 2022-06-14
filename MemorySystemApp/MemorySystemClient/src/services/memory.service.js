@@ -13,7 +13,7 @@ class MemoryService {
         return axios.post(CREATE_URL, payload, { headers: authHeader() });
     }
 
-    userMemories(category, pageNumber, pageSize) {
+    userMemories(category, pageNumber, pageSize, search) {
         return axios.get(
             `${USER_MEMORIES_URL}`,
             {
@@ -21,6 +21,7 @@ class MemoryService {
                     category: category,
                     pageNumber: pageNumber,
                     pageSize: pageSize,
+                    search: search,
                 },
                 headers: authHeader(),
             });
