@@ -5,9 +5,22 @@ import { toast } from 'react-toastify';
 
 import memoryService from '../../services/memory.service';
 
-function ItemMemoryCard({ memoryId, ownerProfilePicture, pictureUrl, title, owner, isLikeFromCurrentUser, likes }) {
+function ItemMemoryCard({
+  memoryId,
+  ownerProfilePicture,
+  pictureUrl,
+  title,
+  owner,
+  isLikeFromCurrentUser,
+  likes,
+  isFavoriteForCurrentUser,
+  favorites }) {
+
   const [isLike, setIsLike] = useState(false);
   const [countLikes, setCountLikes] = useState(0);
+
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [countFavorites, setCountFavorites] = useState(0);
 
   const onClickSetLikes = useCallback(() => {
     memoryService.likeMemory(memoryId)
@@ -18,11 +31,25 @@ function ItemMemoryCard({ memoryId, ownerProfilePicture, pictureUrl, title, owne
       .catch(err => {
         toast.error(err.response?.data?.errorMessage || err.message);
       })
-  })
+  });
+
+  const onClickSetFavorites = useCallback(() => {
+    memoryService.favoriteMemory(memoryId)
+      .then(response => {
+        setCountFavorites(response.data.data)
+        setIsFavorite(prev => !prev);
+      })
+      .catch(err => {
+        toast.error(err.response?.data?.errorMessage || err.message);
+      })
+  });
 
   useEffect(() => {
     setCountLikes(likes);
     setIsLike(isLikeFromCurrentUser);
+
+    setCountFavorites(favorites);
+    setIsFavorite(isFavoriteForCurrentUser);
   }, [])
 
   return (
@@ -40,7 +67,10 @@ function ItemMemoryCard({ memoryId, ownerProfilePicture, pictureUrl, title, owne
               <i className={`fa fa-thumbs-up ${isLike && 'tumb'}`}></i>
               <span id="likes"></span>{countLikes}
             </Link>
-            <Link to="#"> <i className="fa fa-heart"></i><span id="favorites"></span></Link>
+            <Link to="#" onClick={onClickSetFavorites}>
+              <i className={`fa fa-heart ${isFavorite && 'heart'}`}></i>
+              <span id="favorites"></span>{countFavorites}
+            </Link>
           </div>
           <div className="row">
             <div className="col-md-6 p-3">

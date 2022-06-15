@@ -35,6 +35,12 @@
         public async Task<IActionResult> Like(int id)
             => this.ResponseResult<int, int>(await this.memoryService.LikeAsync(id, this.User.GetUserId()));
 
+        [HttpPost]
+        [Route(nameof(Favorite))]
+        [Authorize]
+        public async Task<IActionResult> Favorite(int id)
+            => this.ResponseResult<int, int>(await this.memoryService.FavoriteAsync(id, this.User.GetUserId()));
+
         // [Authorize]
         [HttpGet]
         [Route(nameof(Details))]

@@ -26,5 +26,9 @@
         public bool IsLikedFromCurrentUser { get; set; }
 
         public int Likes { get; set; }
+
+        public bool IsFavoriteForCurrentUser { get; set; }
+
+        public int Favorites { get; set; }
     }
 }

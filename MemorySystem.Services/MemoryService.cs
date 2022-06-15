@@ -47,6 +47,33 @@
             return Result.Success;
         }
 
+        public async Task<Result<int>> FavoriteAsync(int id, string userId)
+        {
+            var memory = await this.db.Memories.Include(l => l.Favorites).FirstOrDefaultAsync(p => p.Id == id);
+            if (memory == null)
+            {
+                return Result<int>.Error("Memory not found!");
+            }
+
+            // Make with flag
+            if (memory.Favorites.Any(u => u.UserId == userId))
+            {
+                memory.Favorites.Remove(memory.Favorites.First(p => p.UserId == userId));
+            }
+            else
+            {
+                memory.Favorites.Add(new Favorite
+                {
+                    UserId = userId,
+                    MemoryId = id,
+                });
+            }
+
+            await this.db.SaveChangesAsync();
+
+            return Result<int>.Success(memory.Favorites.Count);
+        }
+
         public async Task<Result<int>> LikeAsync(int id, string userId)
         {
             var memory = await this.db.Memories.Include(l => l.Likes).FirstOrDefaultAsync(p => p.Id == id);

@@ -17,7 +17,9 @@ function MemoryCards({ currentItems, handlePageClick, pageCount, remountComponen
                             title={i.title}
                             owner={i.owner}
                             isLikeFromCurrentUser={i.isLikedFromCurrentUser}
-                            likes={i.likes} />)}
+                            likes={i.likes}
+                            isFavoriteForCurrentUser={i.isFavoriteForCurrentUser}
+                            favorites={i.favorites} />)}
                 </div>
                 <div>
                     <ReactPaginate

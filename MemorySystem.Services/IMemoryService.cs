@@ -15,6 +15,8 @@
 
         Task<Result<int>> LikeAsync(int id, string userId);
 
+        Task<Result<int>> FavoriteAsync(int id, string userId);
+
         Task Test();
     }
 }

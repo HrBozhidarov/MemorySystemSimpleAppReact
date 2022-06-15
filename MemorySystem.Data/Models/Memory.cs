@@ -35,6 +35,6 @@
 
         public ICollection<Like> Likes { get; set; }
 
-        public IEnumerable<Favorite> Favorites { get; set; }
+        public ICollection<Favorite> Favorites { get; set; }
     }
 }

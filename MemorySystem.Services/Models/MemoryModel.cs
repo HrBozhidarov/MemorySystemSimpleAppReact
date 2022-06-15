@@ -27,13 +27,19 @@
 
         public int Likes { get; set; }
 
+        public int Favorites { get; set; }
+
+        public bool IsFavoriteForCurrentUser { get; set; }
+
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Memory, MemoryModel>()
                 .ForMember(pd => pd.Likes, opt => opt.MapFrom(p => p.Likes.Count()))
                 .ForMember(pd => pd.Owner, opt => opt.MapFrom(p => p.Owner.UserName))
                 .ForMember(pd => pd.IsLikedFromCurrentUser, opt => opt.MapFrom(p => p.Likes.Any(u => u.UserId == p.OwnerId)))
-                .ForMember(pd => pd.OwnerProfilePicture, opt => opt.MapFrom(p => p.Owner.ProfileUrl));
+                .ForMember(pd => pd.OwnerProfilePicture, opt => opt.MapFrom(p => p.Owner.ProfileUrl))
+                .ForMember(pd => pd.Favorites, opt => opt.MapFrom(p => p.Favorites.Count()))
+                .ForMember(pd => pd.IsFavoriteForCurrentUser, opt => opt.MapFrom(p => p.Favorites.Any(u => u.UserId == p.OwnerId)));
         }
     }
 }
