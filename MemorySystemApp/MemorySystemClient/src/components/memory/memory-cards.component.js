@@ -11,6 +11,7 @@ function MemoryCards({ currentItems, handlePageClick, pageCount, remountComponen
                     {currentItems.map(i =>
                         <ItemMemoryCard
                             key={i.id}
+                            memoryId={i.id}
                             ownerProfilePicture={i.ownerProfilePicture}
                             pictureUrl={i.url}
                             title={i.title}

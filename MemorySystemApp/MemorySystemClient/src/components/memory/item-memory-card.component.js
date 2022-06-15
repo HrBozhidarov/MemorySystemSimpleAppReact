@@ -1,7 +1,30 @@
-import Reat from 'react';
+import Reat, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function ItemMemoryCard({ ownerProfilePicture, pictureUrl, title, owner, isLikeFromCurrentUser, likes, setLike }) {
+import { toast } from 'react-toastify';
+
+import memoryService from '../../services/memory.service';
+
+function ItemMemoryCard({ memoryId, ownerProfilePicture, pictureUrl, title, owner, isLikeFromCurrentUser, likes }) {
+  const [isLike, setIsLike] = useState(false);
+  const [countLikes, setCountLikes] = useState(0);
+
+  const onClickSetLikes = useCallback(() => {
+    memoryService.likeMemory(memoryId)
+      .then(response => {
+        setCountLikes(response.data.data)
+        setIsLike(prev => !prev);
+      })
+      .catch(err => {
+        toast.error(err.response?.data?.errorMessage || err.message);
+      })
+  })
+
+  useEffect(() => {
+    setCountLikes(likes);
+    setIsLike(isLikeFromCurrentUser);
+  }, [])
+
   return (
     <div className="col-md-3 shadow-lg bg-white rounded">
       <div className="card profile-card-2 wrimagecard wrimagecard-topimage h-100">
@@ -13,11 +36,11 @@ function ItemMemoryCard({ ownerProfilePicture, pictureUrl, title, owner, isLikeF
           <h5 className="profile-card-title font-weight-700">Title: <span>{title}</span></h5>
           <h5 className="card-title font-weight-700">Published By: <span>{owner}</span></h5>
           <div className="icon-block">
-            <Link to="#" onClick={setLike}>
-              <i className={`fa fa-thumbs-up ${isLikeFromCurrentUser && 'tumb'}`}></i>
-              <span id="likes"></span>{likes}
+            <Link to="#" onClick={onClickSetLikes}>
+              <i className={`fa fa-thumbs-up ${isLike && 'tumb'}`}></i>
+              <span id="likes"></span>{countLikes}
             </Link>
-            <a href="#"> <i className="fa fa-heart"></i><span id="favorites"></span></a>
+            <Link to="#"> <i className="fa fa-heart"></i><span id="favorites"></span></Link>
           </div>
           <div className="row">
             <div className="col-md-6 p-3">

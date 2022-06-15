@@ -1,8 +1,8 @@
 import axios from "axios";
 
-import authHeader from '../shared/axios-utils'
+import authHeader from '../shared/axios-utils';
 
-import { DOMAIN_URL } from '../constants/constants'
+import { DOMAIN_URL } from '../constants/constants';
 
 const CREATE_URL = `${DOMAIN_URL}memory/create`;
 const USER_MEMORIES_URL = `${DOMAIN_URL}memory/userMemories`;
@@ -28,7 +28,7 @@ class MemoryService {
     }
 
     likeMemory(id) {
-        return this.http.post(`${LIKE_MEMORY_URL}${id}`, { headers: authHeader() });
+        return axios.post(`${LIKE_MEMORY_URL}${id}`, {}, { headers: authHeader() });
     }
 }
 

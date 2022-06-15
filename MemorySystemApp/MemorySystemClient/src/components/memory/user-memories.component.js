@@ -3,6 +3,8 @@ import SideBarMemoryCategories from '../../components/memory/side-bar-memory-cat
 import DebounceSearch from '../shared/search-input.component';
 import MemoryCards from './memory-cards.component';
 
+import { toast } from 'react-toastify';
+
 import debounce from 'lodash.debounce';
 
 import memoryService from './../../services/memory.service';
@@ -35,8 +37,8 @@ function UserMemories() {
                 setPageCount(Math.ceil(totalCount / ITEMS_PER_PAGE));
                 setCurrentItems(memories);
             })
-            .catch(e => {
-                console.log(e);
+            .catch(err => {
+                toast.error(err.response?.data?.errorMessage || err.message);
             });
     })
 
