@@ -3,14 +3,16 @@
     using MemorySystem.Infrastructure.AutomapperSettings;
     using MemorySystem.Services.Models;
 
-    public class UserProfileResponseModel : IMapFrom<UserModel>
+    public class UserProfileResponseModel : IMapFrom<UserProfileModel>
     {
-        public string Username { get; set; }
+        public string UserName { get; set; }
 
         public string Email { get; set; }
 
-        public string ProfileUrl { get; set; }
+        public int Comments { get; set; }
 
-        public string Password { get; set; }
+        public int Favorites { get; set; }
+
+        public int Memories { get; set; }
     }
 }

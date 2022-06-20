@@ -60,7 +60,7 @@ function NavigationBar() {
                                 <img src={userAthContext.user.profileUrl} width="50" height="50" className="rounded-circle" />
                             </Link>
                             <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <Link className="dropdown-item" to="#">Dashboard</Link>
+                                <Link className="dropdown-item" to="/profile">Profile</Link>
                                 <Link className="dropdown-item" to="/user/update">Edit Profile</Link>
                                 <Link className="dropdown-item" to='#' onClick={userAthContext.onLogout}>Logout</Link>
                             </div>

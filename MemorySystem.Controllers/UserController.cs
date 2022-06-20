@@ -33,8 +33,12 @@
         public async Task<IActionResult> Update(UpdateUserModel model) =>
             this.ResponseResult(await this.userService.UpdateAsync(this.User.GetUserId(), Mapper.Map<UserModel>(model)));
 
-        [HttpGet(nameof(Details))]
-        public async Task<IActionResult> Details() => this.ResponseResult<UserModel, UserProfileResponseModel>(
+        [HttpGet(nameof(Update))]
+        public async Task<IActionResult> Update() => this.ResponseResult<UserModel, UpdateUserResponseModel>(
             await this.userService.DetailsAsync(this.User.GetUserId()));
+
+        [HttpGet(nameof(Profile))]
+        public async Task<IActionResult> Profile() => this.ResponseResult<UserProfileModel, UserProfileResponseModel>(
+            await this.userService.ProfileAsync(this.User.GetUserId()));
     }
 }

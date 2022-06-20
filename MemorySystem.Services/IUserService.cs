@@ -11,5 +11,7 @@
         Task<Result> UpdateAsync(string userId, UserModel model);
 
         Task<Result<UserModel>> DetailsAsync(string userId);
+
+        Task<Result<UserProfileModel>> ProfileAsync(string userId);
     }
 }

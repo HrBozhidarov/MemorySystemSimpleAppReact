@@ -1,4 +1,4 @@
-import Reat, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { toast } from 'react-toastify';
@@ -31,7 +31,7 @@ function ItemMemoryCard({
       .catch(err => {
         toast.error(err.response?.data?.errorMessage || err.message);
       })
-  });
+  }, [memoryId]);
 
   const onClickSetFavorites = useCallback(() => {
     memoryService.favoriteMemory(memoryId)
@@ -42,7 +42,7 @@ function ItemMemoryCard({
       .catch(err => {
         toast.error(err.response?.data?.errorMessage || err.message);
       })
-  });
+  }, [memoryId]);
 
   useEffect(() => {
     setCountLikes(likes);

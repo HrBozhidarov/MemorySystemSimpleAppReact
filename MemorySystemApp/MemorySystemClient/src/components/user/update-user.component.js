@@ -24,7 +24,7 @@ function UpdateUser() {
     }
 
     useEffect(() => {
-        userService.details()
+        userService.getUserForUpdate()
             .then(user => {
                 setValue('email', user.data.data.email);
                 setValue('userName', user.data.data.username);

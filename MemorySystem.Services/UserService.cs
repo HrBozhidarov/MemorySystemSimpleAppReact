@@ -96,6 +96,10 @@
             return Result.Success;
         }
 
+        public async Task<Result<UserProfileModel>> ProfileAsync(string userId)
+            => Result<UserProfileModel>.Success(
+                await this.db.Users.Where(u => u.Id == userId).To<UserProfileModel>().FirstOrDefaultAsync());
+
         private async Task<Result> ValidateRegisterModelAsync(UserModel model)
         {
             if (model == null)
