@@ -74,7 +74,11 @@ function ItemMemoryCard({
           </div>
           <div className="row">
             <div className="col-md-6 p-3">
-              <button className="btn btn-primary mt-2 p-1">View Details</button>
+              <button className="btn btn-primary mt-2 p-1">
+                <Link to={`/memories?id=${memoryId}`}>
+                  <span className='color-white'>View Details</span>
+                </Link>
+              </button>
             </div>
             <div className="col-md-6 p-3">
               <button className="btn btn-primary mt-2 p-1">View Profile</button>

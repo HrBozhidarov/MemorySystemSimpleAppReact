@@ -47,6 +47,10 @@ body {
     margin-bottom: 20px !important;
 }
 
+.color-white {
+    color: white !important;
+}
+
 .test {
     color: red !important;
 }

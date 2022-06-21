@@ -100,6 +100,17 @@
             return Result<int>.Success(memory.Likes.Count);
         }
 
+        public async Task<Result<MemoryDetailsModel>> Details(int id)
+        {
+            var memoryDetailsModel = await this.db.Memories.Where(m => m.Id == id).ProjectTo<MemoryDetailsModel>().FirstOrDefaultAsync();
+            if (memoryDetailsModel == null)
+            {
+                return Result<MemoryDetailsModel>.Error($"Memory with id {id} was not found");
+            }
+
+            return Result<MemoryDetailsModel>.Success(memoryDetailsModel);
+        }
+
         public async Task Test()
         {
             var a = this.db.Memories.AsAsyncEnumerable();

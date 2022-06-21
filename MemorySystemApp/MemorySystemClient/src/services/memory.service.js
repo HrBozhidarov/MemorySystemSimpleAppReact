@@ -8,6 +8,7 @@ const CREATE_URL = `${DOMAIN_URL}memory/create`;
 const USER_MEMORIES_URL = `${DOMAIN_URL}memory/userMemories`;
 const LIKE_MEMORY_URL = `${DOMAIN_URL}memory/like?id=`;
 const FAORITE_MEMORY_URL = `${DOMAIN_URL}memory/favorite?id=`;
+const MEMORY_DETAILS_URL = `${DOMAIN_URL}memory/details?id=`;
 
 class MemoryService {
     create(payload) {
@@ -26,6 +27,10 @@ class MemoryService {
                 },
                 headers: authHeader(),
             });
+    }
+
+    details(id) {
+        return axios.get(`${MEMORY_DETAILS_URL}${id}`, { headers: authHeader() });
     }
 
     likeMemory(id) {

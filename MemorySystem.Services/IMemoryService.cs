@@ -17,6 +17,8 @@
 
         Task<Result<int>> FavoriteAsync(int id, string userId);
 
+        Task<Result<MemoryDetailsModel>> Details(int id);
+
         Task Test();
     }
 }

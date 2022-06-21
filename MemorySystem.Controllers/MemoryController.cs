@@ -12,7 +12,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    // [Authorize]
+    [Authorize]
     public class MemoryController : BaseResponseController
     {
         private readonly IMemoryService memoryService;
@@ -41,14 +41,10 @@
         public async Task<IActionResult> Favorite(int id)
             => this.ResponseResult<int, int>(await this.memoryService.FavoriteAsync(id, this.User.GetUserId()));
 
-        // [Authorize]
         [HttpGet]
         [Route(nameof(Details))]
         public async Task<IActionResult> Details(int id)
-        {
-            await this.memoryService.Test();
-            return this.Ok();
-        }
+            => this.ResponseResult<MemoryDetailsModel, MemoryDetailsResponseModel>(await this.memoryService.Details(id));
 
         [HttpGet]
         [Route(nameof(UserMemories))]
