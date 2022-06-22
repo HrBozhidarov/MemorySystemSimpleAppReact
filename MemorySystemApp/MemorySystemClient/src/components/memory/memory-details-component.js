@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams } from "react-router-dom";
 
 import ListGroup from './../shared/list-group.component';
+import Comments from './../comments/comments.component';
 
 import { toast } from 'react-toastify';
 
@@ -24,10 +25,7 @@ function MemoryDetails() {
     return (
         <>
             <div className="row">
-            <div className="col-md-3"></div>
-            <div className="col-md-3"></div>
-            <div className="col-md-4"></div>
-                <div className="col-md-2">
+            <div className="col-md-2 m-auto">
                     <ListGroup
                         items={{
                             category: memoryInfo.category,
@@ -35,10 +33,17 @@ function MemoryDetails() {
                             likes: memoryInfo.likes,
                             favorites: memoryInfo.favorites
                         }}
-                        contentEditable={'Memory'}
-                        conteditableClass={'padding-20px'}
-                        itemClasses={'padding-20px'} />
+                        contentEditable={'Information'}
+                        conteditableClass={'border-none'}
+                        itemClasses={'border-none'} />
                 </div>
+                <div className="col-md-6 mt-4 mb-4">
+                    <img class="card-img-top border-radius-165px" src={memoryInfo.url} alt="Card image cap" />
+                </div>
+                <div className='col-md-4 mt-4 mb-4'>
+                    <Comments />
+                </div>
+                 
             </div>
         </>
     )

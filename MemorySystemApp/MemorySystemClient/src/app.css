@@ -3,29 +3,70 @@ body {
     height: 100%;
 }
 
+.date {
+    font-size: 11px
+}
+
+.comment-text {
+    font-size: 12px
+}
+
+.fs-12 {
+    font-size: 12px
+}
+
+.shadow-none {
+    box-shadow: none
+}
+
+.name {
+    color: #007bff
+}
+
+.textarea {
+    resize: none
+}
+
 .flex-right-auto {
     margin-left: auto;
- }
+}
 
- .padding-20px {
+.border-radius-15px {
+    border-radius: 15px !important;
+}
+
+.nth-child-background-color-light:nth-child(odd) {
+    background-color: #daedff !important;  
+    border-radius: 10px !important;
+}
+
+.border-radius-165px {
+    border-radius: 165px !important;
+}
+
+.padding-52px {
+    padding: 52px !important;
+}
+
+.padding-20px {
     padding: 20px !important;
- }
+}
 
- .padding-bottom-zero {
+.padding-bottom-zero {
     padding-bottom: 0px !important;
- }
+}
 
- .margin-bottom-zero {
+.margin-bottom-zero {
     margin-bottom: 0px !important;
- }
+}
 
- .padding-top-zero {
+.padding-top-zero {
     padding-top: 0px !important;
- }
+}
 
- .padding-top-10px {
+.padding-top-10px {
     padding-top: 10px !important;
- }
+}
 
 .padding-top-20px {
     padding-top: 20px !important;
@@ -33,17 +74,17 @@ body {
 
 .margin-right-15px {
     margin-right: 15px !important;
- }
+}
 
- .margin-left-zero {
+.margin-left-zero {
     margin-left: 0px !important;
- }
+}
 
- .margin-top-20px {
+.margin-top-20px {
     margin-top: 20px !important;
- }
+}
 
- .margin-bottom-20px {
+.margin-bottom-20px {
     margin-bottom: 20px !important;
 }
 
@@ -53,6 +94,10 @@ body {
 
 .test {
     color: red !important;
+}
+
+.border-none {
+    border: none !important;
 }
 
 /* Search button */
