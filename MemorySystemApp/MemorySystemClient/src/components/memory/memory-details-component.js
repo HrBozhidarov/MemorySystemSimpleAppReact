@@ -38,7 +38,7 @@ function MemoryDetails() {
                         conteditableClass={'border-none'}
                         itemClasses={'border-none'} />
                 </div>
-                <div className="col-md-5 m-auto">
+                <div className="col-md-5 margin-bottom-auto margin-top-auto">
                     <img class="card-img-top border-radius-165px" src={memoryInfo.url} alt="Card image cap" />
                 </div>
             </div>
