@@ -52,8 +52,28 @@ body {
     padding: 20px !important;
 }
 
+.padding-30px {
+    padding: 30px !important;
+}
+
 .padding-bottom-zero {
     padding-bottom: 0px !important;
+}
+
+.margin-bottom-auto {
+    margin-bottom: auto !important;
+}
+
+.margin-top-auto {
+    margin-top: auto !important;
+}
+
+.margin-right-auto {
+    margin-right: auto !important;
+}
+
+.margin-left-auto {
+    margin-left: auto !important;
 }
 
 .margin-bottom-zero {

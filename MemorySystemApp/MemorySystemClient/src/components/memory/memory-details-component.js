@@ -24,10 +24,11 @@ function MemoryDetails() {
 
     return (
         <>
-            <div className="row">
-            <div className="col-md-2 m-auto">
+            <div className="row padding-30px d-flex justify-content-center">
+                <div className="col-md-2 margin-bottom-auto margin-top-auto">
                     <ListGroup
                         items={{
+                            title: memoryInfo.title,
                             category: memoryInfo.category,
                             author: memoryInfo.author,
                             likes: memoryInfo.likes,
@@ -37,13 +38,12 @@ function MemoryDetails() {
                         conteditableClass={'border-none'}
                         itemClasses={'border-none'} />
                 </div>
-                <div className="col-md-6 mt-4 mb-4">
+                <div className="col-md-5 m-auto">
                     <img class="card-img-top border-radius-165px" src={memoryInfo.url} alt="Card image cap" />
                 </div>
-                <div className='col-md-4 mt-4 mb-4'>
-                    <Comments />
-                </div>
-                 
+            </div>
+            <div className='mt-4 mb-4'>
+                <Comments />
             </div>
         </>
     )
