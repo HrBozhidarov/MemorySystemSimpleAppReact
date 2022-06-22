@@ -534,3 +534,8 @@ button {
     color: #fff !important;
     background-color: #f34a77;
 }
+
+.invalid-feedback {
+    color: red !important;
+    display: block !important;
+}

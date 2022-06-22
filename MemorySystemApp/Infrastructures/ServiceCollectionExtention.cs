@@ -16,6 +16,7 @@
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IMemoryService, MemoryService>();
+            services.AddTransient<ICommentService, CommentService>();
 
             return services;
         }

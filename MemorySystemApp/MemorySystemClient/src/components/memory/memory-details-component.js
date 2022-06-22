@@ -39,7 +39,7 @@ function MemoryDetails() {
                         itemClasses={'border-none'} />
                 </div>
                 <div className="col-md-5 margin-bottom-auto margin-top-auto">
-                    <img class="card-img-top border-radius-165px" src={memoryInfo.url} alt="Card image cap" />
+                    <img className="card-img-top border-radius-165px" src={memoryInfo.url} alt="Card image cap" />
                 </div>
             </div>
             <div className='mt-4 mb-4'>
