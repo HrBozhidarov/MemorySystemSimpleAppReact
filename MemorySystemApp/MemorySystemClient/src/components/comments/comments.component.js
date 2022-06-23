@@ -12,34 +12,40 @@ import commentService from './../../services/comment.service';
 
 function Comments({ memoryId }) {
     const userAthContext = useAuth();
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm();
     const [comments, setComments] = useState([]);
+
+    useEffect(() => {
+        async function getCommentsByMemoryId() {
+            try {
+                const response = await commentService.commentsByMemoryId(memoryId);
+                const data = response.data.data;
+
+                if (data && data.length) {
+                    setComments(prev => [...prev, ...data]);
+                }
+            } catch (err) {
+                toast.error(err.response?.data?.errorMessage || err.message);
+            }
+        }
+
+        getCommentsByMemoryId();
+    }, []);
 
     const commentItems = comments.map(c =>
         <ItemComment key={c.id} content={c.content} author={c.author} authorImage={c.authorImage} publishedOn={c.publishedOn} />);
 
-    useEffect(async () => {
-        try {
-            const response = await commentService.commentsByMemoryId(memoryId);
-            const data = response.data.data;
-
-            if (data && data.length) {
-                setComments(prev => [...prev, ...data]);
-            }
-        } catch (err) {
-            toast.error(err.response?.data?.errorMessage || err.message);
-        }
-    }, []);
-
     const onCreate = async (value) => {
         try {
-            const responseCreateComment = await commentService.createComment(id, value);
+            const responseCreateComment = await commentService.createComment(memoryId, value.commentContent);
             const id = responseCreateComment.data.data;
 
             const responseGetCommentById = await commentService.getCommentById(id);
             const newAddedComment = responseGetCommentById.data.data;
             // Check for exists comment
             setComments(prev => [...prev, newAddedComment]);
+
+            setValue('commentContent', '', { shouldValidate: false });
         }
         catch (err) {
             toast.error(err.response?.data?.errorMessage || err.message);

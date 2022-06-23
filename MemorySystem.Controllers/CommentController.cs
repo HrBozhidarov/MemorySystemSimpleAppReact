@@ -28,9 +28,14 @@
                 Mapper.Map<Services.Models.CreateCommentModel>(model), this.User.GetUserId()));
 
         [HttpGet]
-        [Route(nameof(CommentsByMemoryId))]
-        public async Task<IActionResult> CommentsByMemoryId(int memoryId)
+        [Route(nameof(GetAllbyMemoryId))]
+        public async Task<IActionResult> GetAllbyMemoryId(int memoryId)
             => this.ResponseResult<IEnumerable<CommentInfoModel>, IEnumerable<CommentInfoResponseModel>>(
                 await this.commentService.GetAllCommentsByMemoryId(memoryId));
+
+        [HttpGet]
+        [Route(nameof(GetCommentById))]
+        public async Task<IActionResult> GetCommentById(int id)
+            => this.ResponseResult<CommentInfoModel, CommentInfoResponseModel>(await this.commentService.GetInfo(id));
     }
 }

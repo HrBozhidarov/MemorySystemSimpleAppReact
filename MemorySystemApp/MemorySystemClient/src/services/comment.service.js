@@ -5,12 +5,12 @@ import authHeader from '../shared/axios-utils';
 import { DOMAIN_URL } from '../constants/constants';
 
 const CREATE_URL = `${DOMAIN_URL}comment/create`;
-const COMMENTS_BY_MEMORY_ID_URL = `${DOMAIN_URL}comment/byMemoryId`;
+const COMMENTS_BY_MEMORY_ID_URL = `${DOMAIN_URL}comment/getAllByMemoryId`;
 const COMMENT_BY_ID_URL = `${DOMAIN_URL}comment/getCommentById`;
 
 class CommentService {
-    createComment(memoryId, context) {
-        return axios.post(CREATE_URL, { memoryId, context }, { headers: authHeader() });
+    createComment(memoryId, content) {
+        return axios.post(CREATE_URL, { memoryId, content }, { headers: authHeader() });
     }
 
     commentsByMemoryId(memoryId) {

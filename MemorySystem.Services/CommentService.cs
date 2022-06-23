@@ -23,10 +23,10 @@
 
         public async Task<Result<int>> CreateAsync(CreateCommentModel commentModel, string userId)
         {
-            var memory = Mapper.Map<Comment>(commentModel);
-            memory.OwnerId = userId;
+            var comment = Mapper.Map<Comment>(commentModel);
+            comment.OwnerId = userId;
 
-            this.db.Comments.Add(memory);
+            this.db.Comments.Add(comment);
             var id = await this.db.SaveChangesAsync();
 
             return Result<int>.Success(id);

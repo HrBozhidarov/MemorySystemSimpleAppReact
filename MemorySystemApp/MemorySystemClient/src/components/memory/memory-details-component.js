@@ -43,7 +43,7 @@ function MemoryDetails() {
                 </div>
             </div>
             <div className='mt-4 mb-4'>
-                <Comments />
+                <Comments memoryId={memoryInfo.id} />
             </div>
         </>
     )
