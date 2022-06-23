@@ -48,5 +48,11 @@
         public async Task<IActionResult> UserMemories(string category, int pageNumber, int pageSize, string search)
             => this.ResponseResult<MemoryPageModel, MemoryPageResponseModel>(
                 await this.memoryService.UserMemories(this.User.GetUserId(), category, pageNumber, pageSize, search));
+
+        [HttpGet]
+        [Route(nameof(AllMemories))]
+        public async Task<IActionResult> AllMemories(string category, int pageNumber, int pageSize, string search)
+            => this.ResponseResult<MemoryPageModel, MemoryPageResponseModel>(
+                await this.memoryService.AllMemories(category, pageNumber, pageSize, search));
     }
 }

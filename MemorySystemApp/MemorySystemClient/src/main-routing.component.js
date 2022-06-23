@@ -9,6 +9,7 @@ import CreateMemory from './components/memory/create-memory.component';
 import UserMemories from './components/memory/user-memories.component';
 import Profile from './components/user/profile.component';
 import MemoryDetails from './components/memory/memory-details-component';
+import AllMemories from './components/memory/all-memories.component';
 
 import { useAuth } from './shared/auth-context';
 
@@ -23,6 +24,7 @@ function Routing() {
                 <Route path='/user/login' element={<DisableAccessWhenAuth><LoginUser /></DisableAccessWhenAuth>}></Route>
                 <Route path='/memory/create' element={<RequireAuth><CreateMemory /></RequireAuth>}></Route>
                 <Route path='/my/memories' element={<RequireAuth><UserMemories /></RequireAuth>}></Route>
+                <Route path='/all/memories' element={<RequireAuth><AllMemories /></RequireAuth>}></Route>
                 <Route path='/memories' element={<RequireAuth><MemoryDetails /></RequireAuth>}></Route>
                 <Route path='/profile' element={<RequireAuth><Profile /></RequireAuth>}></Route>
             </Routes>

@@ -11,6 +11,8 @@
 
         Task<Result<MemoryPageModel>> UserMemories(string userId, string category, int pageNumber, int pageSize, string search);
 
+        Task<Result<MemoryPageModel>> AllMemories(string category, int pageNumber, int pageSize, string search);
+
         Task<Result<int>> LikeAsync(int id, string userId);
 
         Task<Result<int>> FavoriteAsync(int id, string userId);

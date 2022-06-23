@@ -35,6 +35,9 @@ function NavigationBar() {
                             <li className="nav-item">
                                 <Link className="nav-link" to="/my/memories"><i className="fa fa-camera"></i> My Memories</Link>
                             </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/all/memories"><i className="fa fa-meh-o"></i> All Memories</Link>
+                            </li>
                         </>}
                 </ul>
                 {!userAthContext.user.isAuth &&

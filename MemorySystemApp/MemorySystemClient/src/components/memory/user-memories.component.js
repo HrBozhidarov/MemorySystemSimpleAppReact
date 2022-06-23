@@ -12,7 +12,7 @@ import memoryService from './../../services/memory.service';
 const PAGE_SIZE = 8;
 const ITEMS_PER_PAGE = 8;
 
-function UserMemories() {
+function UserMemories({ isForALL }) {
     const [categoryId, setCategoryId] = useState('all');
     const [currentItems, setCurrentItems] = useState([]);
     const [pageCount, setPageCount] = useState(0);
@@ -31,7 +31,11 @@ function UserMemories() {
     })
 
     const getMemories = useCallback((pageNumber, searchTerm) => {
-        memoryService.userMemories(categoryId, pageNumber, PAGE_SIZE, searchTerm)
+        const service = isForALL
+            ? memoryService.allMemories(categoryId, pageNumber, PAGE_SIZE, searchTerm)
+            : memoryService.userMemories(categoryId, pageNumber, PAGE_SIZE, searchTerm);
+
+        service
             .then(response => {
                 const { totalCount, memories } = response.data.data;
                 setPageCount(Math.ceil(totalCount / ITEMS_PER_PAGE));
@@ -50,7 +54,7 @@ function UserMemories() {
     useEffect(() => {
         getMemories(1);
         setRemountComponent(remountComponent + 1);
-        
+
         return () => searchDebounce.cancel();
     }, [categoryId]);
 

@@ -20,7 +20,7 @@ function Comments({ memoryId }) {
             try {
                 const response = await commentService.commentsByMemoryId(memoryId);
                 const data = response.data.data;
-
+                debugger;
                 if (data && data.length) {
                     setComments(prev => [...prev, ...data]);
                 }
@@ -30,7 +30,7 @@ function Comments({ memoryId }) {
         }
 
         getCommentsByMemoryId();
-    }, []);
+    }, [memoryId]);
 
     const commentItems = comments.map(c =>
         <ItemComment key={c.id} content={c.content} author={c.author} authorImage={c.authorImage} publishedOn={c.publishedOn} />);
@@ -39,7 +39,7 @@ function Comments({ memoryId }) {
         try {
             const responseCreateComment = await commentService.createComment(memoryId, value.commentContent);
             const id = responseCreateComment.data.data;
-
+            debugger;
             const responseGetCommentById = await commentService.getCommentById(id);
             const newAddedComment = responseGetCommentById.data.data;
             // Check for exists comment

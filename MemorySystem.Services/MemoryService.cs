@@ -117,12 +117,37 @@
             int pageNumber,
             int pageSize,
             string search)
-        {
-            Enum.TryParse(category, ignoreCase: true, out CategoryType categoryType);
+            => await this.GetMemoriesAsync(userId, category, pageNumber, pageSize, search);
 
-            var query = categoryType == CategoryType.All
+        public async Task<Result<MemoryPageModel>> AllMemories(
+            string category,
+            int pageNumber,
+            int pageSize,
+            string search)
+            => await this.GetMemoriesAsync(userId: null, category, pageNumber, pageSize, search);
+
+        private async Task<Result<MemoryPageModel>> GetMemoriesAsync(
+            string userId,
+            string category,
+            int pageNumber,
+            int pageSize,
+            string search)
+        {
+            IQueryable<Memory> query = default;
+
+            Enum.TryParse(category, ignoreCase: true, out CategoryType categoryType);
+            if (userId != null)
+            {
+                query = categoryType == CategoryType.All
                 ? this.db.Memories.Where(p => p.OwnerId == userId)
                 : this.db.Memories.Where(m => m.Category.Type == categoryType && m.Owner.Id == userId);
+            }
+            else
+            {
+                query = categoryType == CategoryType.All
+                    ? this.db.Memories.Where(m => true)
+                    : this.db.Memories.Where(m => m.Category.Type == categoryType);
+            }
 
             if (!string.IsNullOrEmpty(search))
             {

@@ -34,7 +34,7 @@
 
         public async Task<Result<CommentInfoModel>> GetInfo(int id)
         {
-            var info = await this.db.Comments.Where(c => c.Id == id).ProjectTo<CommentInfoModel>().FirstOrDefaultAsync();
+            var info = await this.db..Comments.Where(c => c.Id == id).ProjectTo<CommentInfoModel>().FirstOrDefaultAsync();
             if (info == null)
             {
                 return Result<CommentInfoModel>.Error("Comment not found");
@@ -45,6 +45,6 @@
 
         public async Task<Result<IEnumerable<CommentInfoModel>>> GetAllCommentsByMemoryId(int memoryId)
             => Result<IEnumerable<CommentInfoModel>>.Success(
-                await this.db.Comments.Where(c => c.Id == memoryId).ProjectTo<CommentInfoModel>().ToListAsync());
+                await this.db.Comments.Where(c => c.MemoryId == memoryId).ProjectTo<CommentInfoModel>().ToListAsync());
     }
 }
