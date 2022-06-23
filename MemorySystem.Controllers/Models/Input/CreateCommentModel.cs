@@ -1,10 +1,8 @@
-﻿namespace MemorySystem.Services.Models
+﻿namespace MemorySystem.Controllers.Models.Input
 {
-    using AutoMapper;
-    using MemorySystem.Data.Models;
     using MemorySystem.Infrastructure.AutomapperSettings;
 
-    public class CreateCommentModel : IMapTo<Comment>
+    public class CreateCommentModel : IMapTo<MemorySystem.Services.Models.CreateCommentModel>
     {
         public int MemoryId { get; set; }
 

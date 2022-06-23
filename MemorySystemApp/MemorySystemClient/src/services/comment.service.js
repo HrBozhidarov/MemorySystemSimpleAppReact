@@ -6,20 +6,30 @@ import { DOMAIN_URL } from '../constants/constants';
 
 const CREATE_URL = `${DOMAIN_URL}comment/create`;
 const COMMENTS_BY_MEMORY_ID_URL = `${DOMAIN_URL}comment/byMemoryId`;
+const COMMENT_BY_ID_URL = `${DOMAIN_URL}comment/getCommentById`;
 
 class CommentService {
-    createComment(payload) {
-        return axios.post(CREATE_URL, payload, { headers: authHeader() });
+    createComment(memoryId, context) {
+        return axios.post(CREATE_URL, { memoryId, context }, { headers: authHeader() });
     }
 
-    commentsByMemoryId(memoryId, pageNumber, pageSize) {
+    commentsByMemoryId(memoryId) {
         return axios.get(
-            `${COMMENTS_BY_MEMORY_ID_URL}${memoryId}`,
+            COMMENTS_BY_MEMORY_ID_URL,
             {
                 params: {
                     memoryId: memoryId,
-                    pageNumber: pageNumber,
-                    pageSize: pageSize,
+                },
+                headers: authHeader(),
+            });
+    }
+
+    getCommentById(id) {
+        return axios.get(
+            COMMENT_BY_ID_URL,
+            {
+                params: {
+                    id: id,
                 },
                 headers: authHeader(),
             });
