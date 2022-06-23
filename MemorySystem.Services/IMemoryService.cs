@@ -11,14 +11,10 @@
 
         Task<Result<MemoryPageModel>> UserMemories(string userId, string category, int pageNumber, int pageSize, string search);
 
-        Task<Result<IEnumerable<MemoryModel>>> GetUserMemories(string currentUserId, string userId);
-
         Task<Result<int>> LikeAsync(int id, string userId);
 
         Task<Result<int>> FavoriteAsync(int id, string userId);
 
         Task<Result<MemoryDetailsModel>> Details(int id);
-
-        Task Test();
     }
 }

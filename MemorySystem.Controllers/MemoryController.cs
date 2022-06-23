@@ -24,20 +24,17 @@
 
         [HttpPost]
         [Route(nameof(Create))]
-        [Authorize]
         public async Task<IActionResult> Create(Models.Input.CreateMemoryModel model)
             => this.ResponseResult(await this.memoryService.Create(
                 Mapper.Map<Services.Models.CreateMemoryModel>(model), this.User.GetUserId()));
 
         [HttpPost]
         [Route(nameof(Like))]
-        [Authorize]
         public async Task<IActionResult> Like(int id)
             => this.ResponseResult<int, int>(await this.memoryService.LikeAsync(id, this.User.GetUserId()));
 
         [HttpPost]
         [Route(nameof(Favorite))]
-        [Authorize]
         public async Task<IActionResult> Favorite(int id)
             => this.ResponseResult<int, int>(await this.memoryService.FavoriteAsync(id, this.User.GetUserId()));
 
