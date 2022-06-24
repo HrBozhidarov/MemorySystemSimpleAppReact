@@ -31,7 +31,7 @@ function Comments({ memoryId }) {
         getCommentsByMemoryId();
     }, [memoryId]);
 
-    const commentItems = comments.map(c =>
+    const commentItems = comments.sort(c => c.createdOn).map(c =>
         <ItemComment key={c.id} content={c.content} author={c.author} authorImage={c.authorImage} publishedOn={c.publishedOn} />);
 
     const onCreate = async (value) => {
