@@ -9,7 +9,6 @@ import { toast } from 'react-toastify';
 
 const AuthProvider = ({ children }) => {
     const navigate = useNavigate();
-    const [ isAuth, setIsAuth ] = useState(accountService.isLoggedIn());
     const [ isAdmin, setIsAdmin ] = useState(accountService.isAdmin());
     const [ profileUrl, setProfileUrl ] = useState(accountService.getUserProfilePictureUrl());
 
@@ -20,13 +19,12 @@ const AuthProvider = ({ children }) => {
         accountService
             .login(data)
             .then(() => {
-                setIsAuth(accountService.isLoggedIn());
                 setIsAdmin(accountService.isAdmin());
                 setProfileUrl(accountService.getUserProfilePictureUrl());
                 
                 toast.success('Loggin successfully');
 
-                // navigate('/', { replace: true });
+                navigate('/', { replace: true });
             })
             .catch(err => {
                 toast.error(err.response?.data?.errorMessage || err.message);
@@ -36,7 +34,6 @@ const AuthProvider = ({ children }) => {
     const onLogout = () => {
         accountService.logout();
 
-        setIsAuth(accountService.isLoggedIn());
         setProfileUrl(null);
 
         navigate('/', { replace: true });
@@ -46,7 +43,7 @@ const AuthProvider = ({ children }) => {
         onLogin: onLogin,
         onLogout: onLogout,
         user: {
-            isAuth: isAuth,
+            isAuth: accountService.isLoggedIn,
             isAdmin: isAdmin,
             profileUrl: profileUrl,
         },

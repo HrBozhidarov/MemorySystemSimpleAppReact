@@ -37,7 +37,7 @@ function DisableAccessWhenAuth({ children }) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (userAthContext.user.isAuth) {
+        if (userAthContext.user.isAuth()) {
             return navigate('/', { replace: true });
         }
     })
@@ -51,7 +51,7 @@ function RequireAuth({ onlyAdminAccess, children }) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (!userAthContext.user.isAuth) {
+        if (!userAthContext.user.isAuth()) {
             return navigate('/user/login', { replace: true, state: { from: location?.pathname || '/' } });
         }
     

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { DOMAIN_URL, ACCOUNT_KEYS, ROLE_ADMIN } from '../constants/constants'
+import jwt_decode from 'jwt-decode';
 
 const LOGIN_URL = `${DOMAIN_URL}account/login`;
 
@@ -23,7 +24,19 @@ class AccountService {
     }
 
     isLoggedIn() {
-        return this.getToken() != null;
+        const token = localStorage.getItem(ACCOUNT_KEYS.TOKEN);
+        if (!token) {
+            return false;
+        }
+
+        const currentDate = new Date();
+        const decodedToken = jwt_decode(token);
+
+        if (decodedToken.exp * 1000 < currentDate.getTime()) {
+            return false;
+        }
+
+        return true;
     }
 
     isAdmin() {

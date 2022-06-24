@@ -17,7 +17,7 @@ function NavigationBar() {
                     <li className="nav-item active">
                         <Link className="nav-link nav-home" to="/home"><i className="fa fa-home"></i> Home</Link>
                     </li>
-                    {userAthContext.user.isAuth &&
+                    {userAthContext.user.isAuth() &&
                         <>
                             <li className="nav-item">
                                 <Link className="nav-link" to="/memory/create"><i className="fa fa-picture-o"></i> Create You Memory</Link>
@@ -30,7 +30,7 @@ function NavigationBar() {
                             </li>
                         </>}
                 </ul>
-                {!userAthContext.user.isAuth &&
+                {!userAthContext.user.isAuth() &&
                     <ul className="navbar-nav" >
                         <li className="nav-item active">
                             <Link className="nav-link" to="/user/create">Register</Link>
@@ -40,7 +40,7 @@ function NavigationBar() {
                         </li>
                     </ul>}
 
-                {userAthContext.user.isAuth &&
+                {userAthContext.user.isAuth() &&
                     <ul className="navbar-nav">
                         <li className="nav-item dropdown">
                             <Link
