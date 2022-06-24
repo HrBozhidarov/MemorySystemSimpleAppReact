@@ -55,7 +55,7 @@ function Comments({ memoryId }) {
             <div className="d-flex justify-content-center row">
                 <div className="col-md-12">
                     <div className="d-flex flex-column comment-section">
-                        {commentItems}
+                        {(commentItems && commentItems.length > 0 ? commentItems : <div>No Comments yet</div>)}
                         <div className="bg-light p-2 border-radius-15px mt-2">
                             <form onSubmit={handleSubmit(onCreate)}>
                                 <div className="d-flex flex-row align-items-start">
