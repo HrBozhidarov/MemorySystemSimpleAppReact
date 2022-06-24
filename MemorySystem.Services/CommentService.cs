@@ -25,16 +25,17 @@
         {
             var comment = Mapper.Map<Comment>(commentModel);
             comment.OwnerId = userId;
+            comment.CreatedOn = DateTime.UtcNow;
 
             this.db.Comments.Add(comment);
-            var id = await this.db.SaveChangesAsync();
+            await this.db.SaveChangesAsync();
 
-            return Result<int>.Success(id);
+            return Result<int>.Success(comment.Id);
         }
 
         public async Task<Result<CommentInfoModel>> GetInfo(int id)
         {
-            var info = await this.db..Comments.Where(c => c.Id == id).ProjectTo<CommentInfoModel>().FirstOrDefaultAsync();
+            var info = await this.db.Comments.Where(c => c.Id == id).ProjectTo<CommentInfoModel>().FirstOrDefaultAsync();
             if (info == null)
             {
                 return Result<CommentInfoModel>.Error("Comment not found");

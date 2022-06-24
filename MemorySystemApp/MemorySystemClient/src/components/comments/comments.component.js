@@ -20,7 +20,6 @@ function Comments({ memoryId }) {
             try {
                 const response = await commentService.commentsByMemoryId(memoryId);
                 const data = response.data.data;
-                debugger;
                 if (data && data.length) {
                     setComments(prev => [...prev, ...data]);
                 }
@@ -39,7 +38,6 @@ function Comments({ memoryId }) {
         try {
             const responseCreateComment = await commentService.createComment(memoryId, value.commentContent);
             const id = responseCreateComment.data.data;
-            debugger;
             const responseGetCommentById = await commentService.getCommentById(id);
             const newAddedComment = responseGetCommentById.data.data;
             // Check for exists comment
