@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, Fragment } from 'react';
 import SideBarMemoryCategories from '../../components/memory/side-bar-memory-categories.component';
 import DebounceSearch from '../shared/search-input.component';
 import MemoryCards from './memory-cards.component';
@@ -59,7 +59,7 @@ function UserMemories({ isForALL }) {
     }, [categoryId]);
 
     return (
-        <>
+        <Fragment>
             <div className="row">
                 <div className='col-md-4 flex-right-auto padding-bottom-zero margin-right-15px padding-top-20px'>
                     <DebounceSearch onChange={searchDebounce} clearInput={clearSearchInput} />
@@ -77,7 +77,7 @@ function UserMemories({ isForALL }) {
                         remountComponent={remountComponent} />
                 </div>
             </div>
-        </>
+        </ Fragment>
     )
 }
 
